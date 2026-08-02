@@ -17,4 +17,17 @@ document.addEventListener('DOMContentLoaded', function() {
     if (typeof initScrollRevealObserver === 'function') {
         initScrollRevealObserver();
     }
+
+    // 4. Initialize Live Availability Ticker in Sticky Bottom Nav
+    updateStickyNavTicker();
+    window.addEventListener('glamazon-state-changed', updateStickyNavTicker);
 });
+
+function updateStickyNavTicker() {
+    const ticker = document.getElementById('stickyAvailabilityTicker');
+    if (ticker && window.GlamazonStore) {
+        const chairs = window.GlamazonStore.getChairs();
+        const freeCount = chairs.filter(c => c.status === 'available').length;
+        ticker.innerText = `14:00 | ${freeCount} CHAIR${freeCount === 1 ? '' : 'S'} FREE`;
+    }
+}

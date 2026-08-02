@@ -3,44 +3,44 @@
 /* Gauge and Metric Cards */
 .metric-card {
     background-color: #161616;
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.12);
     border-radius: 4px;
     transition: all 0.3s ease;
 }
 
 .metric-card:hover {
-    border-color: rgba(212, 175, 55, 0.4);
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+    border-color: rgba(212, 175, 55, 0.5);
+    box-shadow: 0 4px 25px rgba(0, 0, 0, 0.5);
 }
 
 /* Chair Grid Card States */
 .chair-card {
     background-color: #1A1A1A;
-    border: 1px solid rgba(255, 255, 255, 0.12);
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .chair-occupied {
     border-left: 4px solid #EF4444 !important;
-    background-color: rgba(239, 68, 68, 0.05) !important;
+    background-color: rgba(239, 68, 68, 0.08) !important;
 }
 
 .chair-available {
     border-left: 4px solid #10B981 !important;
-    background-color: rgba(16, 185, 129, 0.05) !important;
-    box-shadow: 0 0 12px rgba(16, 185, 129, 0.1);
+    background-color: rgba(16, 185, 129, 0.08) !important;
+    box-shadow: 0 0 15px rgba(16, 185, 129, 0.15);
 }
 
 .chair-cleaning {
     border-left: 4px solid #F59E0B !important;
-    background-color: rgba(245, 158, 11, 0.05) !important;
+    background-color: rgba(245, 158, 11, 0.08) !important;
 }
 
 /* Flash Yield Alert Box */
 .yield-alert-card {
-    background: linear-gradient(135deg, rgba(245, 158, 11, 0.15), rgba(15, 15, 15, 0.95));
-    border: 1px solid rgba(245, 158, 11, 0.5);
-    box-shadow: 0 0 25px rgba(245, 158, 11, 0.2);
+    background: linear-gradient(135deg, rgba(245, 158, 11, 0.18), rgba(15, 15, 15, 0.98));
+    border: 1px solid rgba(245, 158, 11, 0.6);
+    box-shadow: 0 0 30px rgba(245, 158, 11, 0.25);
 }
 
 /* Simulated Phone Notification */
@@ -67,7 +67,7 @@
     color: #FFFFFF;
     border-radius: 12px;
     box-shadow: 0 4px 15px rgba(7, 94, 84, 0.4);
-    animation: slideDown 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    animation: slideDown 0.5s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 @keyframes slideDown {
@@ -78,12 +78,133 @@
 /* Timetable Matrix Grid */
 .timetable-cell {
     background-color: #141414;
-    border: 1px solid rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.08);
     font-size: 11px;
 }
 
 .booking-block {
-    background-color: rgba(212, 175, 55, 0.18);
+    background-color: rgba(212, 175, 55, 0.25);
     border-left: 3px solid #D4AF37;
     color: #F5F4F0;
 }
+
+/* CSV Dropzone & Import Tool */
+.csv-dropzone {
+    border: 2px dashed rgba(212, 175, 55, 0.4);
+    background-color: rgba(255, 255, 255, 0.02);
+    transition: all 0.3s ease;
+}
+
+.csv-dropzone:hover, .csv-dropzone.dragover {
+    border-color: #D4AF37;
+    background-color: rgba(212, 175, 55, 0.08);
+}
+
+/* Contact Table Styles */
+.contacts-table-container {
+    background-color: #141414;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 4px;
+    overflow-x: auto;
+}
+
+.contacts-table th {
+    background-color: #1A1A1A;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.contacts-table tr {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    transition: background 0.2s ease;
+}
+
+.contacts-table tr:hover {
+    background-color: rgba(255, 255, 255, 0.03);
+}
+
+/* Modal Backdrops & Dialogs */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(6px);
+    z-index: 50;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+}
+
+.modal-overlay.hidden {
+    display: none !important;
+}
+
+.modal-dialog {
+    background-color: #181818;
+    border: 1px solid rgba(212, 175, 55, 0.4);
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.9);
+    border-radius: 6px;
+    max-height: 90vh;
+    overflow-y: auto;
+    animation: modalPop 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes modalPop {
+    from { opacity: 0; transform: scale(0.95); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+/* Tag Pills */
+.tag-badge {
+    padding: 2px 8px;
+    font-size: 9px;
+    font-weight: 700;
+    text-transform: uppercase;
+    border-radius: 2px;
+}
+
+.tag-vip {
+    background-color: rgba(212, 175, 55, 0.2);
+    color: #D4AF37;
+    border: 1px solid rgba(212, 175, 55, 0.4);
+}
+
+.tag-regular {
+    background-color: rgba(59, 130, 246, 0.2);
+    color: #60A5FA;
+    border: 1px solid rgba(59, 130, 246, 0.4);
+}
+
+.tag-dormant {
+    background-color: rgba(239, 68, 68, 0.2);
+    color: #F87171;
+    border: 1px solid rgba(239, 68, 68, 0.4);
+}
+
+.tag-imported {
+    background-color: rgba(16, 185, 129, 0.2);
+    color: #34D399;
+    border: 1px solid rgba(16, 185, 129, 0.4);
+}
+
+/* Placeholder Chips */
+.tag-chip {
+    background: rgba(212, 175, 55, 0.15);
+    border: 1px solid rgba(212, 175, 55, 0.4);
+    color: #D4AF37;
+    padding: 3px 8px;
+    font-size: 10px;
+    font-family: monospace;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.tag-chip:hover {
+    background: rgba(212, 175, 55, 0.35);
+    color: #FFF;
+}
+

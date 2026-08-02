@@ -8,6 +8,22 @@
     
     <!-- External Frameworks & Fonts -->
     <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        obsidian: '#0F0F0F',
+                        cream: '#F5F4F0',
+                        gold: '#D4AF37',
+                        'gold-muted': '#C5A059',
+                        taupe: '#A3A3A3',
+                        slate: '#1A1A1A'
+                    }
+                }
+            }
+        }
+    </script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Montserrat:wght@300;400;600;800&family=Cormorant+Upright:wght@400;500;600;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
@@ -108,7 +124,7 @@
                 <div class="flex justify-between items-center">
                     <div>
                         <span class="text-[9px] tracking-[0.4em] font-sans text-gold font-bold uppercase block mb-1">SCHEDULED APPOINTMENTS</span>
-                        <h2 class="font-serif text-3xl italic text-cream">Upcoming Bookings —</h2>
+                        <h2 class="font-serif text-3xl italic text-cream">Upcoming Bookings</h2>
                     </div>
                     <span class="px-3 py-1 bg-gold/15 border border-gold/40 text-gold text-[9px] font-sans font-bold uppercase">4 TODAY</span>
                 </div>
@@ -126,11 +142,12 @@
         </div>
 
         <!-- ========================================== -->
-        <!-- VIEW 2: FLASH MARKETING ENGINE (YIELD DRIVER) -->
+        <!-- ========================================== -->
+        <!-- VIEW 2: FLASH MARKETING & WHATSAPP ENGINE -->
         <!-- ========================================== -->
         <div id="flashEngineView" class="tab-view hidden space-y-10">
             
-            <!-- SENSOR ALERT & REVENUE ENGINE EXPLANATION -->
+            <!-- SENSOR ALERT & YIELD ENGINE CARD -->
             <div id="yieldSensorAlert" class="yield-alert-card p-6 md:p-8 rounded-sm">
                 <div class="flex justify-between items-start mb-4">
                     <div class="flex items-center gap-3">
@@ -139,72 +156,347 @@
                             AUTOMATED SENSOR ALERT DETECTED
                         </span>
                     </div>
+                    <span id="targetContactCountBadge" class="px-3 py-1 bg-gold/15 border border-gold/40 text-gold text-[10px] font-sans font-bold uppercase rounded-xs">
+                        0 CLIENTS TARGETED
+                    </span>
                 </div>
                 <h3 class="font-serif text-3xl italic text-amber-300 mb-2">Yield Alert: Afternoon Occupancy Below 30%</h3>
-                <p class="text-xs text-taupe font-sans max-w-2xl leading-relaxed mb-6">
-                    Our yield engine detected that less than 30% of salon chairs are booked between 2 PM to 5 PM today. Launch a instant WhatsApp/SMS flash campaign to convert empty chair-hours into immediate revenue.
+                <p class="text-xs text-taupe font-sans max-w-2xl leading-relaxed mb-4">
+                    Our yield engine detected that less than 30% of salon chairs are booked between 2 PM to 5 PM today. Launch a targeted automated WhatsApp broadcast to fill empty chairs in minutes.
                 </p>
-
-                <!-- FUNCTIONAL DISPATCHER CONTROLS -->
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
-                    <div>
-                        <label class="block text-[9px] font-sans text-gold uppercase font-bold mb-2">DISCOUNT RATE</label>
-                        <select id="flashDiscountSelect" class="w-full bg-[#1C1C1C] border border-white/20 p-3 text-xs font-sans text-cream focus:outline-none focus:border-gold rounded-sm">
-                            <option value="20%">20% OFF (RECOMMENDED)</option>
-                            <option value="25%">25% OFF SPECIAL</option>
-                            <option value="30%">30% OFF DEEP YIELD</option>
-                        </select>
-                    </div>
-                    <div class="md:col-span-2">
-                        <label class="block text-[9px] font-sans text-gold uppercase font-bold mb-2">CAMPAIGN BROADCAST MESSAGE</label>
-                        <input type="text" id="customFlashMessage" value="Flash Deal at Glamazon Salon! 20% off all haircuts from 2 PM to 5 PM today only." class="w-full bg-[#1C1C1C] border border-white/20 p-3 text-xs font-sans text-cream focus:outline-none focus:border-gold rounded-sm">
-                    </div>
-                </div>
-
-                <div class="flex flex-col sm:flex-row gap-4 items-center">
-                    <button onclick="sendFlashBroadcast()" class="w-full sm:w-auto px-8 py-4 bg-amber-400 text-black font-sans font-black text-xs tracking-[0.3em] uppercase hover:bg-amber-300 transition-all shadow-xl rounded-sm">
-                        ⚡ SEND FLASH SMS / WHATSAPP BLAST —
-                    </button>
-                    <span class="text-[10px] text-taupe uppercase font-sans">TARGETING: 148 DORMANT CLIENTS IN DATABASE</span>
-                </div>
-
-                <div id="dispatchStatusBanner" class="hidden mt-6 p-4 bg-emerald-500/20 border border-emerald-500 text-emerald-300 font-mono text-xs text-center rounded-sm"></div>
             </div>
 
-            <!-- SIMULATED PHONE NOTIFICATION DEMO (HIGH-FIDELITY PROTOTYPE) -->
-            <section class="max-w-md mx-auto py-8">
-                <div class="text-center mb-6">
-                    <span class="text-[9px] tracking-[0.3em] font-sans text-gold font-bold uppercase block mb-1">PROTOTYPE DEMO SCREEN 3</span>
-                    <h3 class="font-serif text-2xl italic text-cream">Simulated Client WhatsApp Notification</h3>
+            <!-- 2-COLUMN MARKETING WORKSPACE: CAMPAIGN CONFIG & PHONE PREVIEW -->
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+                
+                <!-- LEFT COLUMN: TEMPLATE SELECTOR & CAMPAIGN CONFIG (8 COLS) -->
+                <div class="lg:col-span-7 bg-[#161616] border border-white/10 p-6 rounded-sm space-y-6">
+                    <div class="flex justify-between items-center pb-4 border-b border-white/10">
+                        <div>
+                            <span class="text-[9px] font-sans font-bold text-gold tracking-widest uppercase block">CAMPAIGN BUILDER</span>
+                            <h3 class="font-serif text-xl italic text-cream">Select Template & Customize Payload</h3>
+                        </div>
+                        <button onclick="openAddTemplateModal()" class="px-3 py-1.5 bg-gold/10 border border-gold/40 text-gold hover:bg-gold hover:text-black transition-all text-[10px] font-sans font-bold uppercase rounded-xs flex items-center gap-1">
+                            <i class="ph ph-plus-circle text-sm"></i> NEW TEMPLATE
+                        </button>
+                    </div>
+
+                    <!-- TEMPLATE SELECTOR DROPDOWN -->
+                    <div>
+                        <label class="block text-[10px] font-sans font-bold text-taupe uppercase mb-2">PREDEFINED MARKETING TEMPLATE</label>
+                        <select id="templateSelect" onchange="onTemplateChange()" class="w-full bg-[#1C1C1C] border border-white/20 p-3 text-xs font-sans text-cream focus:outline-none focus:border-gold rounded-sm">
+                            <!-- Populated dynamically -->
+                        </select>
+                    </div>
+
+                    <!-- DISCOUNT RATE SELECTOR -->
+                    <div class="grid grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-[10px] font-sans font-bold text-taupe uppercase mb-2">OFFER DISCOUNT / BENEFIT</label>
+                            <select id="flashDiscountSelect" onchange="updateLivePreview()" class="w-full bg-[#1C1C1C] border border-white/20 p-3 text-xs font-sans text-cream focus:outline-none focus:border-gold rounded-sm">
+                                <option value="15%">15% OFF SLOTS</option>
+                                <option value="20%" selected>20% OFF (RECOMMENDED)</option>
+                                <option value="25%">25% OFF SPECIAL</option>
+                                <option value="30%">30% OFF DEEP YIELD</option>
+                                <option value="FREE SPA">COMPLIMENTARY SPA</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-[10px] font-sans font-bold text-taupe uppercase mb-2">SALON NAME TAG</label>
+                            <input type="text" id="salonNameTag" value="Glamazon Salon" oninput="updateLivePreview()" class="w-full bg-[#1C1C1C] border border-white/20 p-3 text-xs font-sans text-cream focus:outline-none focus:border-gold rounded-sm">
+                        </div>
+                    </div>
+
+                    <!-- MESSAGE BODY WITH DYNAMIC TAG CHIPS -->
+                    <div>
+                        <div class="flex justify-between items-center mb-2">
+                            <label class="block text-[10px] font-sans font-bold text-taupe uppercase">MESSAGE BODY PAYLOAD</label>
+                            <div class="flex gap-1">
+                                <span class="text-[9px] text-taupe uppercase mr-1">INSERT:</span>
+                                <button onclick="insertTag('{name}')" class="tag-chip">{name}</button>
+                                <button onclick="insertTag('{discount}')" class="tag-chip">{discount}</button>
+                                <button onclick="insertTag('{salon_name}')" class="tag-chip">{salon_name}</button>
+                            </div>
+                        </div>
+                        <textarea id="customFlashMessage" rows="4" oninput="updateLivePreview()" class="w-full bg-[#1C1C1C] border border-white/20 p-3 text-xs font-sans text-cream focus:outline-none focus:border-gold rounded-sm leading-relaxed" placeholder="Type campaign message template..."></textarea>
+                    </div>
+
+                    <!-- DISPATCH ACTION BAR -->
+                    <div class="pt-4 border-t border-white/10 flex flex-col sm:flex-row gap-4 justify-between items-center">
+                        <div class="text-[10px] text-taupe font-sans">
+                            <i class="ph ph-users text-gold text-base inline-block mr-1"></i>
+                            <span id="selectedCountText" class="text-cream font-bold">8 Contacts</span> selected for broadcast
+                        </div>
+                        <button onclick="launchCampaignQueue()" class="w-full sm:w-auto px-8 py-3.5 bg-amber-400 text-black font-sans font-extrabold text-xs tracking-[0.2em] uppercase hover:bg-amber-300 transition-all shadow-xl rounded-sm flex items-center justify-center gap-2">
+                            <i class="ph ph-whatsapp-logo text-lg"></i> ⚡ LAUNCH WHATSAPP BROADCAST
+                        </button>
+                    </div>
                 </div>
 
-                <!-- PHONE MOCKUP CONTAINER -->
-                <div class="phone-mockup p-6">
-                    <div class="phone-notch mb-6"></div>
-                    <div class="text-center text-[10px] text-taupe font-mono mb-4">TODAY 14:02 PM</div>
-                    
-                    <!-- WHATSAPP MESSAGE BUBBLE -->
-                    <div class="whatsapp-bubble p-4 space-y-2">
-                        <div class="flex justify-between items-center text-[10px] text-emerald-200 font-bold">
-                            <span><i class="ph ph-whatsapp-logo text-lg inline-block mr-1"></i> GLAMAZON SALON</span>
-                            <span>JUST NOW</span>
-                        </div>
-                        <p class="text-xs text-white font-sans leading-relaxed" id="phoneMessageBody">
-                            Flash Deal at Glamazon Salon! 20% off all haircuts from 2 PM to 5 PM today only.
-                        </p>
-                        <div class="pt-2">
-                            <a href="index.html" class="inline-block px-4 py-2 bg-white text-black font-sans font-bold text-[9px] uppercase tracking-wider rounded-xs">
-                                BOOK NOW WITH 20% OFF ↗
-                            </a>
+                <!-- RIGHT COLUMN: LIVE PHONE MOCKUP PREVIEW (5 COLS) -->
+                <div class="lg:col-span-5 flex flex-col items-center">
+                    <div class="text-center mb-4">
+                        <span class="text-[9px] tracking-[0.3em] font-sans text-gold font-bold uppercase block mb-1">REAL-TIME PREVIEW</span>
+                        <h3 class="font-serif text-xl italic text-cream">Client WhatsApp View</h3>
+                    </div>
+
+                    <!-- PHONE MOCKUP CONTAINER -->
+                    <div class="phone-mockup w-full max-w-sm p-6">
+                        <div class="phone-notch mb-6"></div>
+                        <div class="text-center text-[10px] text-taupe font-mono mb-4" id="phoneMockTime">TODAY 14:02 PM</div>
+                        
+                        <!-- WHATSAPP MESSAGE BUBBLE -->
+                        <div class="whatsapp-bubble p-4 space-y-3">
+                            <div class="flex justify-between items-center text-[10px] text-emerald-200 font-bold border-b border-emerald-400/20 pb-2">
+                                <span class="flex items-center gap-1"><i class="ph ph-whatsapp-logo text-base"></i> <span id="previewSalonHeader">GLAMAZON SALON</span></span>
+                                <span>JUST NOW</span>
+                            </div>
+                            <p class="text-xs text-white font-sans leading-relaxed whitespace-pre-wrap" id="phoneMessageBody">
+                                Hi Sunita Rao! ⚡ Exclusive Flash Deal at Glamazon Salon: Get 20% OFF all hair spa & styling slots between 2 PM to 5 PM today!
+                            </p>
+                            <div class="pt-2 border-t border-emerald-400/20 flex justify-between items-center">
+                                <span class="text-[9px] text-emerald-300 font-mono">PREVIEW TARGET: <span id="previewTargetName" class="font-bold text-white">Sunita Rao</span></span>
+                                <span class="text-[9px] bg-white/20 text-white px-2 py-0.5 rounded-xs font-bold uppercase">PREVIEW</span>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </section>
+
+            </div>
+
+            <!-- CLIENT CONTACTS DIRECTORY & CSV IMPORT SECTION -->
+            <div class="bg-[#161616] border border-white/10 p-6 md:p-8 rounded-sm space-y-6">
+                
+                <!-- SECTION HEADER & TOOLBAR -->
+                <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-6 border-b border-white/10">
+                    <div>
+                        <span class="text-[9px] font-sans font-bold text-gold tracking-widest uppercase block">CLIENT DATABASE & RECIPIENT TARGETING</span>
+                        <h3 class="font-serif text-2xl italic text-cream">Client Contacts Directory</h3>
+                    </div>
+                    
+                    <div class="flex flex-wrap items-center gap-3">
+                        <!-- CSV FILE UPLOAD TRIGGER BUTTON -->
+                        <input type="file" id="csvFileInput" accept=".csv, .txt" class="hidden" onchange="handleCSVFileSelect(event)">
+                        <button onclick="document.getElementById('csvFileInput').click()" class="px-4 py-2.5 bg-emerald-500/20 border border-emerald-500/50 text-emerald-300 hover:bg-emerald-500 hover:text-black transition-all text-xs font-sans font-bold uppercase rounded-xs flex items-center gap-2">
+                            <i class="ph ph-file-csv text-base"></i> IMPORT CSV / EXCEL
+                        </button>
+                        
+                        <!-- ADD SINGLE CONTACT BUTTON -->
+                        <button onclick="openAddContactModal()" class="px-4 py-2.5 bg-white/5 border border-white/20 text-cream hover:border-gold hover:text-gold transition-all text-xs font-sans font-bold uppercase rounded-xs flex items-center gap-2">
+                            <i class="ph ph-user-plus text-base"></i> ADD CONTACT
+                        </button>
+                    </div>
+                </div>
+
+                <!-- CSV DROPZONE INSTRUCTION BOX (TOGGLABLE / COLLAPSIBLE) -->
+                <div id="csvDropzone" class="csv-dropzone p-6 text-center rounded-sm cursor-pointer" onclick="document.getElementById('csvFileInput').click()">
+                    <i class="ph ph-cloud-arrow-up text-3xl text-gold mb-2 block"></i>
+                    <p class="text-xs font-sans text-cream font-medium">Click to select or drop your <span class="text-gold font-bold">CSV / Excel file</span> here</p>
+                    <p class="text-[10px] font-sans text-taupe mt-1">Supported columns: <code class="bg-black/40 px-1 py-0.5 rounded text-gold">Name</code>, <code class="bg-black/40 px-1 py-0.5 rounded text-gold">Phone</code>, <code class="bg-black/40 px-1 py-0.5 rounded text-gold">Tag</code> (e.g. VIP, Dormant, Regular)</p>
+                </div>
+
+                <!-- SEARCH & TAG FILTER CONTROLS -->
+                <div class="grid grid-cols-1 sm:grid-cols-12 gap-4 items-center">
+                    <!-- SEARCH INPUT -->
+                    <div class="sm:col-span-6 relative">
+                        <i class="ph ph-magnifying-glass absolute left-3 top-3 text-taupe text-base"></i>
+                        <input type="text" id="contactSearchInput" oninput="renderContactsTable()" placeholder="Search clients by name or phone number..." class="w-full bg-[#1C1C1C] border border-white/20 pl-10 pr-4 py-2.5 text-xs font-sans text-cream focus:outline-none focus:border-gold rounded-sm">
+                    </div>
+
+                    <!-- TAG FILTER SELECT -->
+                    <div class="sm:col-span-4">
+                        <select id="contactTagFilter" onchange="renderContactsTable()" class="w-full bg-[#1C1C1C] border border-white/20 p-2.5 text-xs font-sans text-cream focus:outline-none focus:border-gold rounded-sm">
+                            <option value="ALL">ALL CATEGORIES / TAGS</option>
+                            <option value="VIP Client">VIP CLIENTS ONLY</option>
+                            <option value="Regular">REGULAR CLIENTS</option>
+                            <option value="Dormant">DORMANT CLIENTS</option>
+                            <option value="Imported">CSV IMPORTED</option>
+                        </select>
+                    </div>
+
+                    <!-- SELECTION COUNTER BADGE -->
+                    <div class="sm:col-span-2 text-right">
+                        <span id="tableSelectionStats" class="text-[10px] font-sans text-gold font-bold uppercase">8 / 8 SELECTED</span>
+                    </div>
+                </div>
+
+                <!-- CONTACTS DATA TABLE -->
+                <div class="contacts-table-container">
+                    <table class="w-full text-left contacts-table">
+                        <thead>
+                            <tr class="text-[10px] font-sans font-bold text-taupe uppercase tracking-wider">
+                                <th class="p-4 w-12 text-center">
+                                    <input type="checkbox" id="selectAllCheckbox" onchange="toggleSelectAllContacts(this)" checked class="accent-gold w-4 h-4 cursor-pointer">
+                                </th>
+                                <th class="p-4">CLIENT NAME</th>
+                                <th class="p-4">PHONE NUMBER</th>
+                                <th class="p-4">TAG / CATEGORY</th>
+                                <th class="p-4">SOURCE</th>
+                                <th class="p-4 text-right">ACTION</th>
+                            </tr>
+                        </thead>
+                        <tbody id="contactsTableBody" class="text-xs font-sans text-cream">
+                            <!-- Populated dynamically via renderContactsTable() -->
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+
         </div>
 
     </main>
 
+    <!-- ======================================================= -->
+    <!-- MODAL 1: INTERACTIVE AUTOMATED BROADCAST QUEUE RUNNER -->
+    <!-- ======================================================= -->
+    <div id="broadcastQueueModal" class="modal-overlay hidden">
+        <div class="modal-dialog w-full max-w-xl p-6 md:p-8 space-y-6">
+            
+            <!-- MODAL HEADER -->
+            <div class="flex justify-between items-start pb-4 border-b border-white/10">
+                <div>
+                    <span class="px-2.5 py-1 bg-amber-500/20 text-amber-300 text-[9px] font-sans font-extrabold tracking-widest uppercase rounded-xs block mb-1">
+                        AUTOMATED WHATSAPP BROADCAST QUEUE
+                    </span>
+                    <h3 class="font-serif text-2xl italic text-cream">Dispatching Campaign Messages</h3>
+                </div>
+                <button onclick="closeBroadcastModal()" class="text-taupe hover:text-white text-xl">
+                    <i class="ph ph-x"></i>
+                </button>
+            </div>
+
+            <!-- PROGRESS BAR & STEP COUNTER -->
+            <div class="space-y-2">
+                <div class="flex justify-between items-center text-xs font-sans">
+                    <span class="text-taupe">PROGRESS: <span id="queueStepCounter" class="text-gold font-bold">1 / 8</span></span>
+                    <span id="queueProgressPercent" class="text-gold font-mono font-bold">12%</span>
+                </div>
+                <div class="w-full bg-[#111111] h-2.5 rounded-full overflow-hidden border border-white/10">
+                    <div id="queueProgressBar" class="bg-gradient-to-r from-amber-500 to-gold h-full transition-all duration-300" style="width: 12%;"></div>
+                </div>
+            </div>
+
+            <!-- RECIPIENT CARD -->
+            <div class="bg-[#111111] border border-gold/30 p-4 rounded-sm space-y-2">
+                <div class="flex justify-between items-center">
+                    <span class="text-[10px] font-sans font-bold text-taupe uppercase">CURRENT RECIPIENT</span>
+                    <span id="queueTargetTag" class="tag-badge tag-vip">VIP CLIENT</span>
+                </div>
+                <div class="flex items-center justify-between">
+                    <div>
+                        <h4 class="font-serif text-xl italic text-cream" id="queueTargetName">Sunita Rao</h4>
+                        <div class="text-xs font-mono text-gold" id="queueTargetPhone">+91 98765 12345</div>
+                    </div>
+                    <div class="w-10 h-10 rounded-full bg-gold/10 border border-gold/40 flex items-center justify-center text-gold font-serif italic text-lg" id="queueTargetInitial">
+                        S
+                    </div>
+                </div>
+            </div>
+
+            <!-- PERSONALIZED MESSAGE PAYLOAD PREVIEW -->
+            <div class="space-y-2">
+                <label class="block text-[10px] font-sans font-bold text-taupe uppercase">PERSONALIZED MESSAGE PAYLOAD</label>
+                <div class="p-4 bg-[#075E54]/30 border border-emerald-500/40 rounded-sm text-xs font-sans text-emerald-100 leading-relaxed whitespace-pre-wrap" id="queueMessagePreview">
+                    Hi Sunita Rao! ⚡ Exclusive Flash Deal at Glamazon Salon: Get 20% OFF all hair spa & styling slots between 2 PM to 5 PM today! Reply or tap to reserve your chair.
+                </div>
+            </div>
+
+            <!-- ACTION TRIGGER BUTTONS -->
+            <div class="pt-4 border-t border-white/10 space-y-3">
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    <a id="whatsappDeepLinkBtn" href="#" target="_blank" onclick="markCurrentQueueSent()" class="px-6 py-3.5 bg-emerald-500 text-black font-sans font-extrabold text-xs tracking-wider uppercase hover:bg-emerald-400 transition-all text-center rounded-sm flex items-center justify-center gap-2 shadow-lg">
+                        <i class="ph ph-whatsapp-logo text-lg"></i> ⚡ SEND VIA WHATSAPP
+                    </a>
+                    <button onclick="advanceQueueStep(true)" class="px-6 py-3.5 bg-white/10 border border-white/20 text-cream font-sans font-bold text-xs tracking-wider uppercase hover:bg-white/20 transition-all rounded-sm flex items-center justify-center gap-2">
+                        SKIP CONTACT <i class="ph ph-arrow-right"></i>
+                    </button>
+                </div>
+                <div class="flex justify-between items-center text-[10px] text-taupe font-sans pt-2">
+                    <span>STATUS: <span id="queueCurrentStatus" class="text-amber-400 font-bold">READY TO SEND</span></span>
+                    <button onclick="closeBroadcastModal()" class="text-taupe hover:text-red-400 underline">End Campaign Queue</button>
+                </div>
+            </div>
+
+            <!-- DISPATCH SUMMARY LOG -->
+            <div class="border-t border-white/10 pt-4">
+                <span class="text-[9px] font-sans font-bold text-taupe uppercase block mb-2">CAMPAIGN SESSION LOG</span>
+                <div id="queueSessionLog" class="max-h-24 overflow-y-auto space-y-1 text-[10px] font-mono text-taupe no-scrollbar">
+                    <!-- Dynamic log items -->
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- ======================================================= -->
+    <!-- MODAL 2: ADD MANUAL CONTACT MODAL -->
+    <!-- ======================================================= -->
+    <div id="addContactModal" class="modal-overlay hidden">
+        <div class="modal-dialog w-full max-w-md p-6 space-y-6">
+            <div class="flex justify-between items-center pb-3 border-b border-white/10">
+                <h3 class="font-serif text-xl italic text-cream">Add New Client Contact</h3>
+                <button onclick="closeAddContactModal()" class="text-taupe hover:text-white text-lg"><i class="ph ph-x"></i></button>
+            </div>
+            
+            <form onsubmit="handleManualContactSubmit(event)" class="space-y-4">
+                <div>
+                    <label class="block text-[10px] font-sans font-bold text-taupe uppercase mb-1">FULL NAME</label>
+                    <input type="text" id="newContactName" required placeholder="e.g. Ananya Roy" class="w-full bg-[#1C1C1C] border border-white/20 p-2.5 text-xs text-cream rounded-sm focus:border-gold focus:outline-none">
+                </div>
+                <div>
+                    <label class="block text-[10px] font-sans font-bold text-taupe uppercase mb-1">PHONE NUMBER (WITH COUNTRY CODE)</label>
+                    <input type="text" id="newContactPhone" required placeholder="e.g. +91 98765 43210" class="w-full bg-[#1C1C1C] border border-white/20 p-2.5 text-xs text-cream rounded-sm focus:border-gold focus:outline-none">
+                </div>
+                <div>
+                    <label class="block text-[10px] font-sans font-bold text-taupe uppercase mb-1">TAG / CATEGORY</label>
+                    <select id="newContactTag" class="w-full bg-[#1C1C1C] border border-white/20 p-2.5 text-xs text-cream rounded-sm focus:border-gold focus:outline-none">
+                        <option value="VIP Client">VIP Client</option>
+                        <option value="Regular" selected>Regular</option>
+                        <option value="Dormant">Dormant</option>
+                    </select>
+                </div>
+                <div class="pt-4 flex justify-end gap-3">
+                    <button type="button" onclick="closeAddContactModal()" class="px-4 py-2 bg-white/5 border border-white/10 text-taupe text-xs uppercase font-bold rounded-xs">Cancel</button>
+                    <button type="submit" class="px-6 py-2 bg-gold text-black text-xs uppercase font-extrabold rounded-xs hover:bg-gold-muted">Save Contact</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- ======================================================= -->
+    <!-- MODAL 3: CREATE CUSTOM TEMPLATE MODAL -->
+    <!-- ======================================================= -->
+    <div id="addTemplateModal" class="modal-overlay hidden">
+        <div class="modal-dialog w-full max-w-md p-6 space-y-6">
+            <div class="flex justify-between items-center pb-3 border-b border-white/10">
+                <h3 class="font-serif text-xl italic text-cream">Create Custom Template</h3>
+                <button onclick="closeAddTemplateModal()" class="text-taupe hover:text-white text-lg"><i class="ph ph-x"></i></button>
+            </div>
+            
+            <form onsubmit="handleCustomTemplateSubmit(event)" class="space-y-4">
+                <div>
+                    <label class="block text-[10px] font-sans font-bold text-taupe uppercase mb-1">TEMPLATE TITLE</label>
+                    <input type="text" id="newTemplateTitle" required placeholder="e.g. Festival Hair Care Blast" class="w-full bg-[#1C1C1C] border border-white/20 p-2.5 text-xs text-cream rounded-sm focus:border-gold focus:outline-none">
+                </div>
+                <div>
+                    <label class="block text-[10px] font-sans font-bold text-taupe uppercase mb-1">DEFAULT DISCOUNT RATE</label>
+                    <input type="text" id="newTemplateDiscount" value="20%" class="w-full bg-[#1C1C1C] border border-white/20 p-2.5 text-xs text-cream rounded-sm focus:border-gold focus:outline-none">
+                </div>
+                <div>
+                    <label class="block text-[10px] font-sans font-bold text-taupe uppercase mb-1">TEMPLATE BODY PAYLOAD</label>
+                    <textarea id="newTemplateBody" rows="4" required placeholder="Hi {name}! Special offer at {salon_name}..." class="w-full bg-[#1C1C1C] border border-white/20 p-2.5 text-xs text-cream rounded-sm focus:border-gold focus:outline-none"></textarea>
+                </div>
+                <div class="pt-4 flex justify-end gap-3">
+                    <button type="button" onclick="closeAddTemplateModal()" class="px-4 py-2 bg-white/5 border border-white/10 text-taupe text-xs uppercase font-bold rounded-xs">Cancel</button>
+                    <button type="submit" class="px-6 py-2 bg-gold text-black text-xs uppercase font-extrabold rounded-xs hover:bg-gold-muted">Save Template</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
     <!-- Modular JavaScript Modules -->
+    <script src="js/store.js"></script>
     <script src="js/dashboard.js"></script>
 
 </body>
