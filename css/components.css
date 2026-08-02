@@ -1,0 +1,121 @@
+/* Component Styles & Micro-Interactions */
+
+/* Logo Styling */
+.logo-container {
+    position: relative;
+    display: inline-block;
+}
+
+.logo-glam {
+    font-family: 'Cormorant Upright', serif;
+    font-style: italic;
+    font-size: 2.8rem;
+    color: var(--gold);
+    position: absolute;
+    top: -12px;
+    left: -24px;
+    z-index: 10;
+    line-height: 1;
+}
+
+.logo-azon {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5rem;
+    letter-spacing: -1px;
+    z-index: 5;
+    position: relative;
+}
+
+/* Background Parallax */
+.parallax-bg {
+    background-image: linear-gradient(rgba(15, 15, 15, 0.65), rgba(15, 15, 15, 0.95)), url('../Assets/hero_salon_interior.png'), url('https://images.unsplash.com/photo-1560066984-138dadb4c035?q=80&w=1974&auto=format&fit=crop');
+    background-size: cover;
+    background-position: center;
+}
+
+/* Modal Drawer Motion */
+.modal-drawer {
+    transform: translateY(100%);
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.modal-active .modal-drawer {
+    transform: translateY(0);
+}
+
+/* Custom Shadows & Borders */
+.gold-border-glow {
+    box-shadow: 0 0 15px rgba(212, 175, 55, 0.15);
+}
+
+.btn-gold-static {
+    color: var(--gold);
+    border: 1px solid var(--gold);
+    background-color: #111111;
+    transition: all 0.3s ease;
+}
+
+.btn-gold-static:hover {
+    background-color: var(--gold);
+    color: #111111;
+}
+
+/* Modal Interactive Selection Classes */
+.item-selected {
+    background-color: #D4AF37 !important;
+    color: #0F0F0F !important;
+    border: 2px solid #D4AF37 !important;
+    font-weight: 900 !important;
+    box-shadow: 0 4px 20px rgba(212, 175, 55, 0.45) !important;
+    transform: scale(1.02);
+}
+
+.item-unselected {
+    background-color: #1E1E1E !important;
+    color: #E0E0E0 !important;
+    border: 1px solid rgba(255, 255, 255, 0.2) !important;
+}
+
+.item-unselected:hover {
+    border-color: #D4AF37 !important;
+    color: #FFFFFF !important;
+}
+
+.flash-unselected {
+    background-color: #2A1D00 !important;
+    color: #FFC107 !important;
+    border: 1px solid rgba(255, 193, 7, 0.6) !important;
+}
+
+.flash-unselected:hover {
+    border-color: #FFC107 !important;
+    background-color: #3D2B00 !important;
+}
+
+.cta-gold-btn {
+    background-color: #D4AF37 !important;
+    color: #0F0F0F !important;
+    font-weight: 900 !important;
+    border: none !important;
+    transition: all 0.3s ease;
+}
+
+.cta-gold-btn:hover {
+    background-color: #F5E096 !important;
+    box-shadow: 0 0 25px rgba(212, 175, 55, 0.5) !important;
+}
+
+/* Manager Portal Executive Button */
+.btn-manager-portal {
+    background-color: #141414;
+    border: 1px solid rgba(212, 175, 55, 0.4);
+    color: var(--gold);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.btn-manager-portal:hover {
+    background-color: var(--gold);
+    color: #0F0F0F;
+    box-shadow: 0 0 20px rgba(212, 175, 55, 0.4);
+}
+

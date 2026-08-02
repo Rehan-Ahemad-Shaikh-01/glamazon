@@ -1,0 +1,89 @@
+/* Glamazon Salon - Operations Dashboard Stylesheet */
+
+/* Gauge and Metric Cards */
+.metric-card {
+    background-color: #161616;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 4px;
+    transition: all 0.3s ease;
+}
+
+.metric-card:hover {
+    border-color: rgba(212, 175, 55, 0.4);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+}
+
+/* Chair Grid Card States */
+.chair-card {
+    background-color: #1A1A1A;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.chair-occupied {
+    border-left: 4px solid #EF4444 !important;
+    background-color: rgba(239, 68, 68, 0.05) !important;
+}
+
+.chair-available {
+    border-left: 4px solid #10B981 !important;
+    background-color: rgba(16, 185, 129, 0.05) !important;
+    box-shadow: 0 0 12px rgba(16, 185, 129, 0.1);
+}
+
+.chair-cleaning {
+    border-left: 4px solid #F59E0B !important;
+    background-color: rgba(245, 158, 11, 0.05) !important;
+}
+
+/* Flash Yield Alert Box */
+.yield-alert-card {
+    background: linear-gradient(135deg, rgba(245, 158, 11, 0.15), rgba(15, 15, 15, 0.95));
+    border: 1px solid rgba(245, 158, 11, 0.5);
+    box-shadow: 0 0 25px rgba(245, 158, 11, 0.2);
+}
+
+/* Simulated Phone Notification */
+.phone-mockup {
+    background-color: #000000;
+    border: 12px solid #222222;
+    border-radius: 36px;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8);
+    position: relative;
+    overflow: hidden;
+}
+
+.phone-notch {
+    width: 120px;
+    height: 20px;
+    background-color: #222222;
+    border-bottom-left-radius: 12px;
+    border-bottom-right-radius: 12px;
+    margin: 0 auto;
+}
+
+.whatsapp-bubble {
+    background-color: #075E54;
+    color: #FFFFFF;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(7, 94, 84, 0.4);
+    animation: slideDown 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes slideDown {
+    from { transform: translateY(-20px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+/* Timetable Matrix Grid */
+.timetable-cell {
+    background-color: #141414;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    font-size: 11px;
+}
+
+.booking-block {
+    background-color: rgba(212, 175, 55, 0.18);
+    border-left: 3px solid #D4AF37;
+    color: #F5F4F0;
+}

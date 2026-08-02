@@ -1,0 +1,45 @@
+/* Design System Variables & Base Typography */
+:root {
+    --obsidian: #0F0F0F;
+    --cream: #F5F4F0;
+    --gold: #D4AF37;
+    --gold-muted: #C5A059;
+    --taupe: #8B8B8B;
+    --slate: #1A1A1A;
+}
+
+body {
+    background-color: var(--obsidian);
+    color: var(--cream);
+    font-family: 'Inter', sans-serif;
+    overflow-x: hidden;
+}
+
+/* Typography Utility Classes */
+.font-serif {
+    font-family: 'Playfair Display', serif;
+}
+
+.font-sans {
+    font-family: 'Montserrat', sans-serif;
+}
+
+.font-script {
+    font-family: 'Cormorant Upright', serif;
+    font-style: italic;
+}
+
+/* Section Numerals */
+.section-numeral {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 800;
+    font-size: 5rem;
+    line-height: 0.8;
+    opacity: 0.15;
+    letter-spacing: -0.05em;
+}
+
+/* Scrollbar Hiding Utilities */
+::-webkit-scrollbar { display: none; }
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
